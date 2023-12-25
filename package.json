@@ -1,0 +1,45 @@
+{
+  "name": "lionstyle",
+  "description": "Light-weight component framework",
+  "version": "0.1.0",
+ "homepage": "https://github.com/FollowTheOwlets/lionstyle#readme",
+  "author": {
+    "name": "FollowTheOwlets Lev",
+    "email": "lev.fedorichev@aisa.ru"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FollowTheOwlets/lionstyle.git"
+  },
+  "bugs": {
+    "url": "https://github.com/FollowTheOwlets/lionstyle/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/FollowTheOwlets/lionstyle.git/LICENSE"
+    }
+  ],
+  "main": "dest/lionstyle",
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "scripts": {
+    "build": "gulp build"
+  },
+    "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-babel": "^8.0.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-minify": "^3.1.0",
+    "gulp-pug": "^5.0.0",
+    "gulp-sass": "^5.1.0",
+    "gulp-uglify": "^3.0.2",
+    "sass": "^1.69.5"
+  },
+  "keywords": [
+    "pug",
+    "scss",
+    "html-components"
+  ]
+}
