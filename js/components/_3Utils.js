@@ -4,41 +4,58 @@ class _3Utils {
      * Получить элемент со страницы
      * @param selector селектор
      * @param name опциональный, имя для регистрации
-     * @returns LionElement
+     * @returns _3Element
      */
-    static get (selector, name)  {
+    static get(selector, name) {
         const temp = document.querySelector(selector);
-        const el = new LionElement(temp)
-        name && LIONUtils.register(name, el);
-        return el;
+        return _3Utils.#tryRegister(name, temp);
     };
 
     /**
-     * Создать новый LionElement
+     * Создать новый _3Element
      * @param tag tag элемента
      * @param name опциональный, имя для регистрации
-     * @returns LionElement элемент
+     * @returns _3Element элемент
      */
-    static create (tag, name) {
+    static create(tag, name) {
         const temp = document.createElement(tag);
-        const el = new LionElement(temp)
-        name && LIONUtils.register(name, el);
-        return el;
+        return _3Utils.#tryRegister(name, temp);
     };
+
+    static #tryRegister(name, temp) {
+        if (name) {
+            const regElement = _3Utils.register(name, temp);
+            return regElement;
+        } else {
+            const el = new _3Element(temp);
+            return el;
+        }
+    }
 
     /**
      * Зарегистрировать элемент
      * @param name имя для регистрации
      * @param el элемент
-     * @returns LionElement элемент
+     * @returns _3Element элемент
      */
-    static register (name, el)  {
-        if (!name || this.#registerElements.has(name)){
+    static register(name, el) {
+        if (!name || this.#registerElements.has(name)) {
             throw new Error(`ошибка регистрации элемента ${name} obj=${el.description()}`);
         }
-        const temp = document.querySelector(selector);
-        return new LionElement(temp);
+        if (!(el instanceof _3Element)) {
+            el = new _3Element(el);
+        }
+
+        this.#registerElements.set(name, el);
+        return el;
     };
+
+    static regElement(name) {
+        if (!name || !this.#registerElements.has(name)) {
+            throw new Error(`ошибка получения элемента ${name}`);
+        }
+        return this.#registerElements.get(name);
+    }
 
 
     /**
@@ -48,20 +65,20 @@ class _3Utils {
      * @param addClass класс, который на время добавится
      * @param removeClass класс который на время уберется
      */
-    static timeClassToggle(el, time, addClass, removeClass){
-        el.classList.add(addClass);
-        removeClass && el.classList.remove(removeClass);
+    static timeClassToggle(el, time, addClass, removeClass) {
+        el.withClass(addClass);
+        removeClass && el.withoutClass(removeClass);
 
         setTimeout(() => {
-            removeClass && el.classList.add(removeClass);
-            el.classList.remove(addClass);
+            removeClass && el.withClass(removeClass);
+            el.withoutClass(addClass);
         }, time);
     };
 }
 
 /**
  * Прокси для работы с утилитами
- * @type {LIONUtils}
+ * @type {_3Utils}
  * @private
  */
-const _$ = LIONUtils;
+const _$ = _3Utils;

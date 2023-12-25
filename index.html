@@ -205,21 +205,6 @@
             </div>
         </div>
         <div class="demo-block">
-            <dev-notify class="notification notification__ok">
-                <p>Good meow from cat's server</p>
-                <div class="notification__close" onClick="this.parentElement.remove()"><span
-                        class="material-symbols-outlined">close</span></div>
-            </dev-notify>
-            <dev-notify class="notification notification__info">
-                <p>Usual meow from cat's server</p>
-                <div class="notification__close" onClick="this.parentElement.remove()"><span
-                        class="material-symbols-outlined">close</span></div>
-            </dev-notify>
-            <dev-notify class="notification notification__bad">
-                <p>Danger meow from cat's server</p>
-                <div class="notification__close" onClick="this.parentElement.remove()"><span
-                        class="material-symbols-outlined">close</span></div>
-            </dev-notify>
             <button class="btn info" id="get_meow" type="button">Get random meow</button>
         </div>
         <div class="demo-block" style="overflow: hidden">
@@ -292,19 +277,35 @@
     </div>
 
     <script>
-        document.querySelector("#get_meow").addEventListener("click", (e) => {
-            let notifications = ['ok', 'bad', 'info'];
+        _$.register('notify', new DevNotify())
+            .addConnectListener('new', (res, rej, obj) => {
+                const { type, text } = obj;
+                _$.regElement('notify')
+                    .attr('data-type', type)
+                    .attr('data-text', text)
+                    .__element__.init();
+            });
 
-            let type = notifications[Math.floor(Math.random() * 3)];
-            const notify = new DevNotify(type, 'New notify');
-            notify.init();
-        });
+        _$.get('#get_meow', 'meow')
+            .connect('notify')
+            .click('notify-create', () => {
+                _$.regElement('meow')
+                    .emit('notify', 'new',
+                        {
+                            type: ['ok', 'bad', 'info'][Math.floor(Math.random() * 3)], text: 'Meow'
+                        }
+                    );
+            });
 
-        document.querySelector("#loading_btn").addEventListener("click", (e) => {
-            let loader = e.target.parentElement.querySelector(".loader__filter");
-
-            LIONUtils.timeClassToggle(loader, 3000, "load", "stop_load");
-        });
+        _$.get('#loading_btn', 'load')
+            .click('notify-create', () => {
+                _$.timeClassToggle(
+                    _$.regElement('load')._$(".loader__filter"),
+                    3000,
+                    "load",
+                    "stop_load"
+                );
+            });
 
     </script>
 </body>

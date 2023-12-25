@@ -49,17 +49,17 @@ class _3Element {
     }
 
     /* Работа со слушателями  */
-    click(name, type, fun, options) {
-        this.#el.addEventListener(type, fun, options);
+    click(name, fun, options) {
+        this.#el.addEventListener('click', fun, options);
         this.#listeners.set(name, fun);
-        this.#listenersType.set(name, type);
+        this.#listenersType.set(name, 'click');
         return this;
     }
 
     rmClick(name) {
         const fun = this.#listeners.get(name);
         const type = this.#listenersType.get(name);
-        this.#el.removeEventListener(type, fun);
+        this.#el.removeEventListener('click', fun);
         return this;
     }
 
@@ -68,14 +68,20 @@ class _3Element {
      * Создание соединения между объектами
      * @param name имя соединения
      * @param el второй участник соединения
-     * @returns {LionElement} this
+     * @returns {_3Element} this
      */
     connect(name, el) {
-        if (el instanceof LionElement) {
+        if (this.#connections.has(name)) return;
+        if (el instanceof _3Element) {
             this.#connections.set(name, el);
             el.connect(name, this);
+        } else if (!el) {
+            const element = _3Utils.regElement(name);
+            if (!element) throw new Error(`connect on only name : [${name}] error`);
+            element.connect(name, this);
+            this.#connections.set(name, element);
         } else {
-            const element = new LionElement(el);
+            const element = new _3Element(el);
             element.connect(name, this);
             this.#connections.set(name, element);
         }
@@ -98,10 +104,21 @@ class _3Element {
      * Задать слушатель получения сообщения
      * @param msg сообщение
      * @param fun слушатель принимающий три аргумента (resolve, reject, obj)
-     * @returns {LionElement} this
+     * @returns {_3Element} this
      */
-    setConnectListener(msg, fun) {
+    addConnectListener(msg, fun) {
         this.#connectListeners.set(msg, fun);
+        return this;
+    }
+
+    /**
+     * Удалить слушатель получения сообщения
+     * @param msg сообщение
+     * @param fun слушатель принимающий три аргумента (resolve, reject, obj)
+     * @returns {_3Element} this
+     */
+    rmConnectListener(msg) {
+        this.#connectListeners.delete(msg);
         return this;
     }
 
@@ -111,7 +128,7 @@ class _3Element {
      * @param obj передающийся объект - посылка
      * @returns {Promise<unknown>} промис обработки слушателя
      */
-    initReceiveListener( msg, obj) {
+    initReceiveListener(msg, obj) {
         const fun = this.#connectListeners.get(`${msg}`);
         if (!fun) throw new Error(`Слушатель с сообщением [${msg}] не найден`)
         return new Promise((resolve, reject) => {
@@ -120,7 +137,22 @@ class _3Element {
     }
 
     /* Дополнительный функционал */
-    isPresent(){
+
+    _$(selector) {
+        const el = this.#el.querySelector(selector);
+        return el ? new _3Element(el) : el;
+    }
+
+    _$$(selector) {
+        const els = this.#el.querySelectorAll(selector);
+        let _els = [];
+        for (let el of els) {
+            _els.push(el ? new _3Element(el) : el)
+        }
+        return _els;
+    }
+
+    isPresent() {
         return !(!this.#el);
     }
 
@@ -206,6 +238,10 @@ class _3Element {
 
     get tagName() {
         return this.#el.tagName;
+    }
+
+    get className() {
+        return this.#el.className;
     }
 
 }
