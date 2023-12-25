@@ -30,6 +30,7 @@ include '../node_modules/3style/dist/pug/3style';
 _(Coming soon)_
 
 ## Примеры
+* [demo](https://followtheowlets.github.io/3style/)
 * [codepen.io](https://codepen.io/followtheowlets/pen/bGORpEp)
 
 ## License
