@@ -1,6 +1,6 @@
 
 <p align="center">
-    <img src="./img/3style.png" alt="3style logo" width="200">
+    <img src="./img/3style.png" alt="3style logo" width="400">
 </p>
 
 <h3 align="center">3style</h3>
