@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
         container.addEventListener("click", () => {
             if (!container.classList.contains("done")) {
-                LIONUtils.timeClassToggle(container, 300, "done");
+                _3Utils.timeClassToggle(container, 300, "done");
             }
         });
 

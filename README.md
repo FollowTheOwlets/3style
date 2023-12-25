@@ -1,31 +1,29 @@
 
 <p align="center">
-  <a href="https://getbootstrap.com/">
-    <img src="https://getbootstrap.com/docs/5.3/assets/brand/bootstrap-logo-shadow.png" alt="Bootstrap logo" width="200" height="165">
-  </a>
+    <img src="./img/3style.png" alt="3style logo" width="200">
 </p>
 
-<h3 align="center">Lionstyle</h3>
+<h3 align="center">3style</h3>
 
 Легковесная библиотека для применения готовых стилей и компонентов команды GasuDev
 
 ## Быстрый старт
-Установить модурь командой: `npm install lionstyle`
+Установить модурь командой: `npm install 3style`
 
 Предоставить доступ к файлам (примери для express)
 ```js
-app.use('/css', express.static(path.join(_dirname, 'node_modules/lionstyle/dist/css')));
-app.use('/js', express.static(path.join(_dirname, 'node_modules/lionstyle/dist/js')));
+app.use('/css', express.static(path.join(_dirname, 'node_modules/3style/dist/css')));
+app.use('/js', express.static(path.join(_dirname, 'node_modules/3style/dist/js')));
 ```
 
 Импортировать файлы в свой проект:
 ``` html 
-<link rel="stylesheet" href="./css/lionstyle.min.css">
-<script src="./js/lionstyle.min.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="./css/3style.min.css">
+<script src="./js/3style.min.js" crossorigin="anonymous"></script>
 ```
 
 ``` pug 
-include '../node_modules/lionstyle/dist/pug/lionstyle';
+include '../node_modules/3style/dist/pug/3style';
 ```
 
 ## Документация

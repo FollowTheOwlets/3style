@@ -10,7 +10,7 @@ const sass = gulpSass(dSass);
 
 gulp.task('sass', () => {
     return gulp
-        .src('./scss/lionstyle.scss')
+        .src('./scss/3style.scss')
         .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
         .pipe(rename({
             suffix: ".min",
@@ -20,7 +20,7 @@ gulp.task('sass', () => {
 
 gulp.task('js', () => {
     return gulp
-        .src('./js/lionstyle.js')
+        .src('./js/3style.js')
         .pipe(gulpImports({hideConsole: true}))
         .pipe(uglify())
         .pipe(rename({
@@ -32,7 +32,7 @@ gulp.task('js', () => {
 gulp.task('pug', () => {
     return gulp
         .src('./pug/**/*.pug')
-        .pipe(concat('lionstyle.pug'))
+        .pipe(concat('3style.pug'))
         .pipe(gulp.dest('./dist'));
 });
 

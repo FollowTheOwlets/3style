@@ -1,4 +1,4 @@
-class LionElement {
+class _3Element {
     #el;
     #listeners = new Map();
     #listenersType = new Map();

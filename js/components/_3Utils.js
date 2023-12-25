@@ -1,4 +1,4 @@
-class LIONUtils {
+class _3Utils {
     static #registerElements = new Map();
     /**
      * Получить элемент со страницы
