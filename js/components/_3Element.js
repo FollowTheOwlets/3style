@@ -19,13 +19,13 @@ class _3Element {
 
     /* Методы глубокого взаимодействия */
     prop(property, value) {
-        if (!value) return this.#el[property];
+        if (typeof(value) !== 'boolean' && (!value)) return this.#el[property];
         this.#el[property] = value;
         return this;
     }
 
     attr(property, value) {
-        if (!value) return this.#el.getAttribute(property);
+        if (typeof(value) !== 'boolean' && (!value)) return this.#el.getAttribute(property);
         this.#el.setAttribute(property, value);
         return this;
     }
@@ -52,14 +52,24 @@ class _3Element {
     click(name, fun, options) {
         this.#el.addEventListener('click', fun, options);
         this.#listeners.set(name, fun);
-        this.#listenersType.set(name, 'click');
         return this;
     }
 
     rmClick(name) {
         const fun = this.#listeners.get(name);
-        const type = this.#listenersType.get(name);
         this.#el.removeEventListener('click', fun);
+        return this;
+    }
+
+    change(name, fun, options) {
+        this.#el.addEventListener('change', fun, options);
+        this.#listeners.set(name, fun);
+        return this;
+    }
+
+    rmChange(name) {
+        const fun = this.#listeners.get(name);
+        this.#el.removeEventListener('change', fun);
         return this;
     }
 
@@ -128,7 +138,7 @@ class _3Element {
      * @param obj передающийся объект - посылка
      * @returns {Promise<unknown>} промис обработки слушателя
      */
-    initReceiveListener(msg, obj) {
+    initConnectListener(msg, obj) {
         const fun = this.#connectListeners.get(`${msg}`);
         if (!fun) throw new Error(`Слушатель с сообщением [${msg}] не найден`)
         return new Promise((resolve, reject) => {
@@ -145,11 +155,20 @@ class _3Element {
 
     _$$(selector) {
         const els = this.#el.querySelectorAll(selector);
+        return this.#convertElements(els);
+    }
+
+    #convertElements(els){
         let _els = [];
         for (let el of els) {
             _els.push(el ? new _3Element(el) : el)
         }
         return _els;
+    }
+
+    equals(el){
+        if(!(el instanceof _3Element)) return false;
+        return el.__element__ === this.__element__;
     }
 
     isPresent() {
@@ -197,6 +216,10 @@ class _3Element {
         return this;
     }
 
+    hasClass(clas) {
+        return this.#el.classList.contains(clas);
+    }
+
     withoutClass(clas) {
         this.#el.classList.remove(clas);
         return this;
@@ -204,6 +227,11 @@ class _3Element {
 
     withInner(inner) {
         this.#el.innerHTML = inner;
+        return this;
+    }
+
+    withoutInner() {
+        this.#el.innerHTML = '';
         return this;
     }
 
@@ -217,15 +245,15 @@ class _3Element {
     }
 
     get parent() {
-        return this.#el.parentElement;
+        return new _3Element(this.#el.parentElement);
     }
 
     get firstChild() {
-        return this.#el.firstElementChild;
+        return new _3Element(this.#el.firstElementChild);
     }
 
     get children() {
-        return this.#el.childNodes;
+        return this.#convertElements(this.#el.childNodes);
     }
 
     get root() {

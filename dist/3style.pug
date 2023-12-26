@@ -44,7 +44,7 @@ mixin accardion-item(name, group= name)
             block
 
 mixin select(keys, values, group, current= keys[0])
-    dev-select.select(value= current)&attributes(attributes)
+    _3-select.select(value= current)&attributes(attributes)
         .select__container(id= group)
             - let i = 0;
             each key in keys
@@ -89,11 +89,8 @@ mixin password(text, id)
         .input__icon
             span.material-symbols-outlined lock
 
-mixin notification(type)
-    .notification(class='notification__' + type)
-        block
-        .notification__close(onClick="this.parentElement.remove()")
-            span.material-symbols-outlined close
+mixin notification(type, text)
+    _3-notify(data-type= type data-text= text)
 
 mixin loader
     .loader__filter

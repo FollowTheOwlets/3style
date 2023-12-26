@@ -8,9 +8,9 @@
 Легковесная библиотека для применения готовых стилей и компонентов команды GasuDev
 
 ## Быстрый старт
-Установить модурь командой: `npm install 3style`
+Установить модуль командой: `npm install 3style`
 
-Предоставить доступ к файлам (примери для express)
+Предоставить доступ к файлам (пример для express)
 ```js
 app.use('/css', express.static(path.join(_dirname, 'node_modules/3style/dist/css')));
 app.use('/js', express.static(path.join(_dirname, 'node_modules/3style/dist/js')));

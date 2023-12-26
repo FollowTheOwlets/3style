@@ -1,13 +1,32 @@
-class DevNotify extends HTMLElement {
+class _3Notify extends HTMLElement {
     text = '';
     type = '';
     textComponent;
     static observedAttributes = ['data-text', 'data-type'];
 
-    constructor(type = 'info', text = '') {
+    constructor() {
         super();
-        if (!this.getAttribute('data-text')) this.setAttribute('data-text', text);
-        if (!this.getAttribute('data-type')) this.setAttribute('data-type', type);
+    };
+
+    static warn(text = '') {
+        const el = new _3Notify();
+        el.dataset.text = text;
+        el.dataset.type = 'bad';
+        return el;
+    };
+
+    static success(text = '') {
+        const el = new _3Notify();
+        el.dataset.text = text;
+        el.dataset.type = 'ok';
+        return el;
+    };
+
+    static info(text = '') {
+        const el = new _3Notify();
+        el.dataset.text = text;
+        el.dataset.type = 'info';
+        return el;
     };
 
     getText() {
@@ -16,6 +35,7 @@ class DevNotify extends HTMLElement {
 
     init() {
         document.body.appendChild(this);
+        setTimeout(() => this.remove(), 8000);
     }
 
     onChange() {
@@ -31,8 +51,6 @@ class DevNotify extends HTMLElement {
         this.textComponent = document.createElement('p');
         this.textComponent.textContent = this.text;
         this.appendChild(this.textComponent);
-
-        setTimeout(() => this.remove(), 8000);
     };
 
     disconnectedCallback() { };
@@ -50,4 +68,4 @@ class DevNotify extends HTMLElement {
     };
 }
 
-customElements.define("dev-notify", DevNotify);
+customElements.define("s3-notify", _3Notify);

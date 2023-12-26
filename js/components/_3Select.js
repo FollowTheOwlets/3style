@@ -1,4 +1,4 @@
-class DevSelect extends HTMLElement {
+class _3Select extends HTMLElement {
     value = "";
     static observedAttributes = ["value"];
     constructor() {
@@ -32,4 +32,4 @@ class DevSelect extends HTMLElement {
     };
 }
 
-customElements.define("dev-select", DevSelect);
+customElements.define("s3-select", _3Select);

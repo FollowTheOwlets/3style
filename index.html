@@ -205,6 +205,7 @@
             </div>
         </div>
         <div class="demo-block">
+            <s3-notify data-text="Meow" data-type="ok"></s3-notify>
             <button class="btn info" id="get_meow" type="button">Get random meow</button>
         </div>
         <div class="demo-block" style="overflow: hidden">
@@ -253,7 +254,7 @@
             </div>
         </div>
         <div class="demo-block">
-            <dev-select class="select" value="s_1">
+            <s3-select class="select" value="s_1">
                 <div class="select__container" id="select">
                     <div class="select__item">
                         <input type="radio" name="select" value="s_1" id="select s_1" checked="checked" />
@@ -272,35 +273,28 @@
                         <label for="select s_4">Bad</label>
                     </div>
                 </div>
-            </dev-select>
+            </s3-select>
         </div>
     </div>
 
     <script>
-        _$.register('notify', new DevNotify())
+        _3Utils.register('notify', new _3Notify())
             .addConnectListener('new', (res, rej, obj) => {
                 const { type, text } = obj;
-                _$.regElement('notify')
+                _3Utils.regElement('notify')
                     .attr('data-type', type)
                     .attr('data-text', text)
                     .__element__.init();
             });
 
-        _$.get('#get_meow', 'meow')
-            .connect('notify')
-            .click('notify-create', () => {
-                _$.regElement('meow')
-                    .emit('notify', 'new',
-                        {
-                            type: ['ok', 'bad', 'info'][Math.floor(Math.random() * 3)], text: 'Meow'
-                        }
-                    );
+        _3Utils.get('#get_meow').click('notify-create', () => {
+                _3Notify.warn('meow').init();
             });
 
-        _$.get('#loading_btn', 'load')
+        _3Utils.get('#loading_btn', 'load')
             .click('notify-create', () => {
-                _$.timeClassToggle(
-                    _$.regElement('load')._$(".loader__filter"),
+                _3Utils.timeClassToggle(
+                    _3Utils.regElement('load')._$(".loader__filter"),
                     3000,
                     "load",
                     "stop_load"

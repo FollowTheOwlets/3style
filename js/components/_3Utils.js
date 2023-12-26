@@ -12,6 +12,32 @@ class _3Utils {
     };
 
     /**
+     * Получить элементы со страницы
+     * @param selector селектор
+     * @returns _3Element[]
+     */
+    static getAll(selector) {
+        const els = document.querySelectorAll(selector);
+        let _els = [];
+        for (let el of els) {
+            _els.push(el ? new _3Element(el) : el)
+        }
+        return _els;
+    }
+
+    /**
+     * Получить элементы со страницы
+     * @param selector селектор
+     * @returns _3Element[]
+     */
+    static forEach(selector, fun) {
+        const els = _3Utils.getAll(selector);
+        for(const el of els){
+            fun(el);
+        }
+    }
+
+    /**
      * Создать новый _3Element
      * @param tag tag элемента
      * @param name опциональный, имя для регистрации
@@ -81,4 +107,4 @@ class _3Utils {
  * @type {_3Utils}
  * @private
  */
-const _$ = _3Utils;
+const $ = _3Utils;
