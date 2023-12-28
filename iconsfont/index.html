@@ -18535,6 +18535,14 @@
 
         });
 
+        _3Utils.get('.demo-container').click('', (e) => {
+            if (e.target.className === 'demo-container') {
+                for (let span of spans) {
+                    span.hide();
+                }
+            }
+        });
+
         _3Utils.get('#search', 'search').change('search', () => {
             const searchValue = _3Utils.regElement('search').value;
             for (let span of spans) {
