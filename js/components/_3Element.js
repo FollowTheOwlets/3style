@@ -1,7 +1,6 @@
 class _3Element {
     #el;
     #listeners = new Map();
-    #listenersType = new Map();
     #connections = new Map();
     #connectListeners = new Map();
 
@@ -14,18 +13,35 @@ class _3Element {
     }
 
     get value() {
-        return this.#el.value | this.#el.getAttribute('value') | this.#el.dataset.value;
+        if (this.#el.value) {
+            return this.#el.value;
+        }
+        else if (this.#el.getAttribute('value')) {
+            return this.#el.getAttribute('value');
+        }
+        else if (this.#el.dataset.value) {
+            return this.#el.dataset.value;
+        }
+        else {
+            return this.#el.textContent;
+        }
     }
 
     /* Методы глубокого взаимодействия */
     prop(property, value) {
-        if (typeof(value) !== 'boolean' && (!value)) return this.#el[property];
+        if (typeof (value) !== 'boolean' && (!value)) return this.#el[property];
         this.#el[property] = value;
         return this;
     }
 
+    style(property, value) {
+        if (typeof (value) !== 'boolean' && (!value)) return this.#el.style[property];
+        this.#el.style[property] = value;
+        return this;
+    }
+
     attr(property, value) {
-        if (typeof(value) !== 'boolean' && (!value)) return this.#el.getAttribute(property);
+        if (typeof (value) !== 'boolean' && (!value)) return this.#el.getAttribute(property);
         this.#el.setAttribute(property, value);
         return this;
     }
@@ -158,7 +174,7 @@ class _3Element {
         return this.#convertElements(els);
     }
 
-    #convertElements(els){
+    #convertElements(els) {
         let _els = [];
         for (let el of els) {
             _els.push(el ? new _3Element(el) : el)
@@ -166,8 +182,8 @@ class _3Element {
         return _els;
     }
 
-    equals(el){
-        if(!(el instanceof _3Element)) return false;
+    equals(el) {
+        if (!(el instanceof _3Element)) return false;
         return el.__element__ === this.__element__;
     }
 
@@ -239,6 +255,11 @@ class _3Element {
     get dataset() {
         return this.#el.dataset;
     }
+
+    get text() {
+        return this.#el.textContent;
+    }
+
 
     get attrs() {
         return this.#el.attributes;

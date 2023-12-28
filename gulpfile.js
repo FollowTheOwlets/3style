@@ -5,6 +5,7 @@ const uglify = require('gulp-uglify');
 const gulpImports = require('gulp-imports');
 const rename = require("gulp-rename");
 const concat = require('gulp-concat');
+var cssmin = require('gulp-cssmin');
 
 const sass = gulpSass(dSass);
 
@@ -36,11 +37,32 @@ gulp.task('pug', () => {
         .pipe(gulp.dest('./dist'));
 });
 
+gulp.task('font-css',() => {
+    return gulp.src('./iconsfont/*.css')
+      .pipe(cssmin())
+      .pipe(rename({
+        suffix: ".min",
+    }))
+      .pipe(gulp.dest('dist'));
+  });
+
+gulp.task('font-js', () => {
+    return gulp
+        .src('./iconsfont/*.js')
+        .pipe(uglify())
+        .pipe(rename({
+            suffix: ".min",
+        }))
+        .pipe(gulp.dest('./dist'));
+});
+
 gulp.task(
     'build',
     gulp.series(
         'sass',
         'js',
+        'font-css',
+        'font-js',
         'pug',
     ),
 );
