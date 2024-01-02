@@ -14,11 +14,20 @@
     <!--<![endif]-->
 
     <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            height: 100vh;
+        }
+
         .demo-container {
             width: 100vw;
             padding: 0 400px;
             display: flex;
             flex-wrap: wrap;
+            flex-grow: 1;
+            overflow: auto;
         }
 
         .demo-block {
@@ -66,21 +75,31 @@
         .input {
             margin: 0 400px;
         }
+
+        #up {
+            position: fixed;
+            bottom: 20px;
+            right: 300px;
+        }
     </style>
 </head>
 
 <body>
-    <h1 style="text-align: center;">
-        <img src="../img/3style.png" alt="3style logo" width="400">
-    </h1>
-    <h3 style="text-align: center;">/
-        <a class="active" href="" target="_blank" rel="noopener noreferrer">Иконки</a> /
-        <a class="" href="../" target="_blank" rel="noopener noreferrer">Копоненты</a> /
-    </h3>
-    <div class="input">
-        <input type="text" value="" placeholder="Поиск" id="search" />
-        <div class="input__icon"><i class="i-bsp-search"></i></div>
-    </div>
+    <header>
+        <h1 style="text-align: center;">
+            <img src="../img/3style.png" alt="3style logo" width="400">
+        </h1>
+        <h3 style="text-align: center;">/
+            <a class="active" href="" target="_blank" rel="noopener noreferrer">Иконки</a> /
+            <a class="" href="../" target="_blank" rel="noopener noreferrer">Компоненты</a> /
+        </h3>
+        <button class="btn ok-inv" id="up" type="button"><i class="i-vuesax-arrow-up-3"></i>
+        </button>
+        <div class="input">
+            <input type="text" value="" placeholder="Поиск" id="search" />
+            <div class="input__icon"><i class="i-bsp-search"></i></div>
+        </div>
+    </header>
     <div class="demo-container">
         <div class="demo-block">
             <i class="i-add-1"></i>
@@ -18535,7 +18554,7 @@
 
         });
 
-        _3Utils.get('.demo-container').click('', (e) => {
+        _3Utils.get('.demo-container', 'container').click('', (e) => {
             if (e.target.className === 'demo-container') {
                 for (let span of spans) {
                     span.hide();
@@ -18553,7 +18572,11 @@
                     span.parent.show();
                 }
             }
-        })
+        });
+
+        _3Utils.get('#up', 'up').click('up', () => {
+            _3Utils.regElement('container').prop('scrollTop', "0");
+        });
     </script>
 </body>
 
