@@ -66,8 +66,8 @@
             <div class="accardion" style="width: 100%">
                 <div class="accardion-item">
                     <div class="accardion-item__header" data-group="table">
-                        <label for="index.htmlopen_radio"><span>index.html</span><span
-                                class="accardion-item__icon material-symbols-outlined">expand_more</span></label>
+                        <label for="index.htmlopen_radio"><span>index.html</span><i
+                                class="accardion-item__icon i-vuesax-arrow-down-1"></i></label>
                         <input name="table" id="index.htmlopen_radio" type="checkbox" />
                     </div>
                     <div class="accardion-item__body">
@@ -129,12 +129,11 @@
             <button class="btn bad-inv" id="btn_33" type="button">Danger button</button>
         </div>
         <div class="demo-block">
-            <button class="btn ok-inv" id="btn_111" type="button"><span class="material-symbols-outlined">done</span>
+            <button class="btn ok-inv" id="btn_111" type="button"><i class="i-check"></i>
             </button>
-            <button class="btn info-inv" id="btn_222" type="button"><span class="material-symbols-outlined">info</span>
+            <button class="btn info-inv" id="btn_222" type="button"><i class="i-bsp-info-square-fill"></i>
             </button>
-            <button class="btn bad-inv" id="btn_333" type="button"><span>Meow icon</span><span
-                    class="material-symbols-outlined">pets</span>
+            <button class="btn bad-inv" id="btn_333" type="button"><span>Meow icon</span><i class="i-cat-1">pets</i>
             </button>
         </div>
         <div class="demo-block">
@@ -180,19 +179,19 @@
         <div class="demo-block">
             <div class="input">
                 <input type="text" value="" placeholder="Search" id="input_1" />
-                <div class="input__icon"><span class="material-symbols-outlined">search</span></div>
+                <div class="input__icon"><i class="i-bsp-search"></i></div>
             </div>
             <div class="input">
                 <input type="text" value="" placeholder="Name" id="input_2" />
-                <div class="input__icon"><span class="material-symbols-outlined">face</span></div>
+                <div class="input__icon"><i class="i-vuesax-user"></i></div>
             </div>
             <div class="input">
                 <input type="number" placeholder="Age" id="input_3" />
-                <div class="input__icon"><span class="material-symbols-outlined">celebration</span></div>
+                <div class="input__icon"><i class="i-user-identifier-card"></i></div>
             </div>
             <div class="input">
                 <input type="password" placeholder="Password" id="input_4" />
-                <div class="input__icon"><span class="material-symbols-outlined">lock</span></div>
+                <div class="input__icon"><i class="i-vuesax-lock-1"></i></div>
             </div>
         </div>
         <div class="demo-block">
@@ -200,8 +199,8 @@
                 <textarea
                     placeholder="Have you ever wanted to overload yourself with an enormous amount of awesome facts about cats and kittens?"
                     id="area_3"></textarea>
-                <div class="textarea__icon" onClick="this.parentElement.querySelector('textarea').value = ''"><span
-                        class="material-symbols-outlined">delete</span></div>
+                <div class="textarea__icon" onClick="this.parentElement.querySelector('textarea').value = ''"><i
+                        class="i-delete-keyboard"></i></div>
             </div>
         </div>
         <div class="demo-block">
@@ -223,8 +222,8 @@
             <div class="accardion" style="width: 100%">
                 <div class="accardion-item">
                     <div class="accardion-item__header" data-group="group_1">
-                        <label for="Accardion list 1open_radio"><span>Accardion list 1</span><span
-                                class="accardion-item__icon material-symbols-outlined">expand_more</span></label>
+                        <label for="Accardion list 1open_radio"><span>Accardion list 1</span><i
+                                class="accardion-item__icon i-vuesax-arrow-down-1"></i></label>
                         <input name="group_1" id="Accardion list 1open_radio" type="checkbox" />
                     </div>
                     <div class="accardion-item__body">
@@ -233,8 +232,8 @@
                 </div>
                 <div class="accardion-item">
                     <div class="accardion-item__header" data-group="group_1">
-                        <label for="Accardion list 2open_radio"><span>Accardion list 2</span><span
-                                class="accardion-item__icon material-symbols-outlined">expand_more</span></label>
+                        <label for="Accardion list 2open_radio"><span>Accardion list 2</span><i
+                            class="accardion-item__icon i-vuesax-arrow-down-1"></i></label>
                         <input name="group_1" id="Accardion list 2open_radio" type="checkbox" />
                     </div>
                     <div class="accardion-item__body">
@@ -243,8 +242,8 @@
                 </div>
                 <div class="accardion-item">
                     <div class="accardion-item__header" data-group="group_1">
-                        <label for="Accardion list 3open_radio"><span>Accardion list 3</span><span
-                                class="accardion-item__icon material-symbols-outlined">expand_more</span></label>
+                        <label for="Accardion list 3open_radio"><span>Accardion list 3</span><i
+                            class="accardion-item__icon i-vuesax-arrow-down-1"></i></label>
                         <input name="group_1" id="Accardion list 3open_radio" type="checkbox" />
                     </div>
                     <div class="accardion-item__body">
@@ -288,8 +287,8 @@
             });
 
         _3Utils.get('#get_meow').click('notify-create', () => {
-                _3Notify.warn('meow').init();
-            });
+            _3Notify.warn('meow').init();
+        });
 
         _3Utils.get('#loading_btn', 'load')
             .click('notify-create', () => {

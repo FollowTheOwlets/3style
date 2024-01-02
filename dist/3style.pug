@@ -11,13 +11,13 @@ mixin btn-icon-link(icon, text, type, href, id)
         button.btn(class=type, id=id, type="button")&attributes(attributes)
             if text
                 span= text
-            span.material-symbols-outlined= icon
+            i(class= icon)
 
 mixin btn-icon(icon, text, type, id)
     button.btn(class=type, id=id, type="button")&attributes(attributes)
         if text
             span= text
-        span.material-symbols-outlined= icon
+        i(class= icon)
 
 mixin switch(text, id)
     .switch
@@ -38,7 +38,7 @@ mixin accardion-item(name, group= name)
         .accardion-item__header(data-group=group)
             label(for=name + 'open_radio')
                 span= name
-                span.accardion-item__icon.material-symbols-outlined expand_more
+                i.accardion-item__icon.i-vuesax-arrow-down-1
             input(name=group, id=name + 'open_radio', type="checkbox")
         .accardion-item__body
             block
@@ -60,7 +60,7 @@ mixin input(icon, text, id, value = "")
     .input
         input(type="text", value=value, placeholder=text, id=id)&attributes(attributes)
         .input__icon
-            span.material-symbols-outlined= icon
+            i(class= icon)
 
 mixin file-input(name, text, type, id)
     label(for='attach-file').input.file-input
@@ -75,22 +75,22 @@ mixin textarea(text, id)
         .textarea__icon(
             onClick="this.parentElement.querySelector('textarea').value = ''"
         )
-            span.material-symbols-outlined delete
+            i.i-delete-keyboard
 
 mixin number(text, id)
     .input
         input(type="number", placeholder=text, id=id)&attributes(attributes)
         .input__icon
-            span.material-symbols-outlined celebration
+            i.i-vuesax-clock-1
 
 mixin password(text, id)
     .input
         input(type="password", placeholder=text, id=id)&attributes(attributes)
         .input__icon
-            span.material-symbols-outlined lock
+            i.i-vuesax-lock-1
 
 mixin notification(type, text)
-    _3-notify(data-type= type data-text= text)
+    _3-notify(data-type= type, data-text= text)
 
 mixin loader
     .loader__filter
