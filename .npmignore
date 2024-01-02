@@ -6,7 +6,10 @@ npm-debug.log
 
 .idea
 
-./img
-./js
-./pug
-./scss
+img
+js
+pug
+scss
+iconsfont
+!iconsfont/fonts
+!iconsfont/index.html

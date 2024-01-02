@@ -13,6 +13,8 @@
 ```html
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/3style@0.1.1/dist/3style.min.css">
 <script src="https://cdn.jsdelivr.net/npm/3style@0.1.1/dist/3style.min.js" crossorigin="anonymous"></script>
+<!--Иконки-->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/3style@0.1.1/dist/3style_icons.min.css">
 ```
 ---
 ### Node js
@@ -27,19 +29,18 @@ app.use('/public', express.static(path.join(_dirname, 'node_modules/3style/dist'
 ``` html 
 <link rel="stylesheet" href="./public/3style.min.css">
 <script src="./public/3style.min.js" crossorigin="anonymous"></script>
+<!--Иконки-->
+<link rel="stylesheet" href="./public/3style_icons.min.css">
 ```
 
 ``` pug 
 include '../node_modules/3style/dist/pug/3style';
 ```
 
-## Документация
-_(Coming soon)_
-
 ## Примеры
-* [demo](https://followtheowlets.github.io/3style/)
-* [codepen.io](https://codepen.io/followtheowlets/pen/bGORpEp)
+* [Основные компоненты](https://followtheowlets.github.io/3style/)
+* [Иконки](https://followtheowlets.github.io/3style/)
 
-## License
+## Лицензия
 Copyright (c) 2023 FollowTheOwlets Lev  
 Licensed under the MIT license.
