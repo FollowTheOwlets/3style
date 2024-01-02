@@ -47,7 +47,7 @@ class _3Notify extends HTMLElement {
         this.text = this.getAttribute('data-text');
         this.type = this.getAttribute('data-type');
         this.className = `notification notification__${this.type}`;
-        this.innerHTML = `<div class="notification__close" onclick="this.parentElement.remove()"><span class="material-symbols-outlined">close</span></div>`;
+        this.innerHTML = `<div class="notification__close" onclick="this.parentElement.remove()"><i class="i-delete-1"></i></div>`;
         this.textComponent = document.createElement('p');
         this.textComponent.textContent = this.text;
         this.appendChild(this.textComponent);
