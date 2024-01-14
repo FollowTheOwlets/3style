@@ -44,7 +44,7 @@ mixin accardion-item(name, group= name)
             block
 
 mixin select(keys, values, group, current= keys[0])
-    _3-select.select(value= current)&attributes(attributes)
+    s3-select.select(value= current)&attributes(attributes)
         .select__container(id= group)
             - let i = 0;
             each key in keys
@@ -90,7 +90,7 @@ mixin password(text, id)
             i.i-vuesax-lock-1
 
 mixin notification(type, text)
-    _3-notify(data-type= type, data-text= text)
+    s3-notify(data-type= type, data-text= text)
 
 mixin loader
     .loader__filter
