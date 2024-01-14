@@ -11,10 +11,10 @@
 ### Внешние зависимости для html страниц
 В `<head>` страницы подключите файлы:
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/3style@0.1.2/dist/3style.min.css">
-<script src="https://cdn.jsdelivr.net/npm/3style@0.1.2/dist/3style.min.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/3style@0.1.4/dist/3style.min.css">
+<script src="https://cdn.jsdelivr.net/npm/3style@0.1.4/dist/3style.min.js" crossorigin="anonymous"></script>
 <!--Иконки-->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/3style@0.1.2/dist/3style_icons.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/3style@0.1.4/dist/3style_icons.min.css">
 ```
 ---
 ### Node js
@@ -34,7 +34,7 @@ app.use('/public', express.static(path.join(_dirname, 'node_modules/3style/dist'
 ```
 
 ``` pug 
-include '../node_modules/3style/dist/pug/3style';
+include ../node_modules/3style/dist/pug/3style
 ```
 
 ## Примеры
