@@ -49,6 +49,7 @@
 
   &__body {
     @include scrollbars(0rem);
+    scrollbar-width: none;
     border-left: 0.1rem solid var(--gray);
     border-right: 0.1rem solid var(--gray);
     background-color: white;
